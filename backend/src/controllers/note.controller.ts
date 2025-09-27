@@ -19,7 +19,7 @@ export const createNote = async (req: AuthRequest, res: Response) => {
       content,
     });
 
-    res.status(201).json({ success: true, message: "Note created", note });
+    res.status(201).json({ success: true, message: "Note created" });
   } catch (error) {
     res.status(500).json({ success: false, message: "Failed to create note", error });
   }
@@ -28,7 +28,7 @@ export const createNote = async (req: AuthRequest, res: Response) => {
 // Get all notes of logged-in user
 export const getNotes = async (req: AuthRequest, res: Response) => {
   try {
-    const notes = await Note.find({ userId: req.user._id });
+    const notes = await Note.find({ userId: req.user._id }).select("-__v").sort({ createdAt: -1 });
     res.status(200).json({ success: true, notes });
   } catch (error) {
     res.status(500).json({ success: false, message: "Failed to fetch notes", error });
@@ -38,13 +38,14 @@ export const getNotes = async (req: AuthRequest, res: Response) => {
 // Get single note by id
 export const getNote = async (req: AuthRequest, res: Response) => {
   try {
-    const note = await Note.findOne({ _id: req.params.id, userId: req.user._id });
+    const note = await Note.findOne({ _id: req.params.id, userId: req.user._id }).select("-__v");
     if (!note) return res.status(404).json({ success: false, message: "Note not found" });
     res.status(200).json({ success: true, note });
   } catch (error) {
     res.status(500).json({ success: false, message: "Failed to fetch note", error });
   }
 };
+
 
 // Update note
 export const updateNote = async (req: AuthRequest, res: Response) => {
@@ -57,7 +58,7 @@ export const updateNote = async (req: AuthRequest, res: Response) => {
       { _id: req.params.id, userId: req.user._id },
       { title, content },
       { new: true }
-    );
+    ).select("-__v");
     if (!note) return res.status(404).json({ success: false, message: "Note not found" });
     res.status(200).json({ success: true, message: "Note updated", note });
   } catch (error) {
