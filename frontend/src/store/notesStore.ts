@@ -13,7 +13,7 @@ export interface Note {
   updatedAt: string;
 }
 
-const token = getFromLocalStorage("token");
+
 
 interface NotesStore {
   notes: Note[];
@@ -30,6 +30,7 @@ export const useNotesStore = create<NotesStore>((set) => ({
     notesLoading:false,
     getAllNotesLoading:false,
     getAllNotes: async () => {
+        const token = getFromLocalStorage("token");
         console.log("Token is", token);
         set({getAllNotesLoading:true});
         try {
@@ -50,6 +51,7 @@ export const useNotesStore = create<NotesStore>((set) => ({
     },
 
     addNote: async (title:string, content:string) => {
+        const token = getFromLocalStorage("token");
         set({notesLoading:true});
         try {
             console.log("Adding note ", title, content);
@@ -77,6 +79,7 @@ export const useNotesStore = create<NotesStore>((set) => ({
     },
 
     updateNote: async (id:string, title:string, content:string) => {
+        const token = getFromLocalStorage("token");
         set({notesLoading:true});
         try {
             const res = await axios.put(`${API_URL}/notes/${id}`, {title, content}, {
@@ -101,6 +104,7 @@ export const useNotesStore = create<NotesStore>((set) => ({
     },
 
     deleteNote: async (id: string) => {
+        const token = getFromLocalStorage("token");
         set({notesLoading:true});
         try {
             const res = await axios.delete(`${API_URL}/notes/${id}`, {
