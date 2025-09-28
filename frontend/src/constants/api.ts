@@ -1,1 +1,1 @@
-export const API_URL = "https://hd-notetaking.onrender.com/api";
+export const API_URL = "https://hd-notetaking-1.onrender.com/api";

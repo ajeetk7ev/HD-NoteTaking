@@ -13,10 +13,12 @@ export const mailSender = async ({ to, subject, html }: SendEmailOptions) => {
       port: 587,
       host: process.env.MAIL_HOST!,
       secure: false,
+      service: 'gmail',
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
       },
+      tls: {rejectUnauthorized: false}
     });
 
     const mailOptions = {
