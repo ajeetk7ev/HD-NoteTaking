@@ -19,7 +19,7 @@ export const createNote = async (req: AuthRequest, res: Response) => {
       content,
     });
 
-    res.status(201).json({ success: true, message: "Note created" });
+    res.status(201).json({ success: true, message: "Note created", note });
   } catch (error) {
     res.status(500).json({ success: false, message: "Failed to create note", error });
   }

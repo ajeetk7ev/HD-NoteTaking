@@ -53,6 +53,7 @@ const Signin: React.FC = () => {
         const result = await login(email, otp);
         if (result.success) {
             toast.success(result.message || "Signed in successfully");
+            setOtp("");
             navigate("/dashboard");
         } else {
             toast.error(result.error || "Signin failed");

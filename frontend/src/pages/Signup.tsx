@@ -56,6 +56,7 @@ const Signup: React.FC = () => {
         const result = await register(name, dob, email, otp);
         if (result.success) {
             toast.success(result.message || "Registered successfully");
+            setOtp("");
             navigate("/dashboard")
         } else {
             toast.error(result.error || "Signup failed");
