@@ -15,9 +15,10 @@ export const sendOtp = async (req: Request, res: Response) => {
         const otp = generateOtp();
         const expiresAt = new Date(Date.now() + 5 * 60 * 1000); // 5 mins
 
-        await Otp.create({ email, otp, expiresAt });
+        const emailSent = await sendVerificationEmail(email, otp);
+        if (!emailSent) return res.status(500).json({ success: false, message: "Failed to send OTP email" });
 
-        await sendVerificationEmail(email, otp);
+        await Otp.create({ email, otp, expiresAt });
 
         console.log(`OTP for ${email}: ${otp}`);
 
@@ -85,7 +86,7 @@ export const login = async (req: Request, res: Response) => {
              success:false,
              message: "User not found" });
 
-        const validOtp = await Otp.findOne({ email, otp });
+        const validOtp = await Otp.findOne({ email, otp }).sort({ createdAt: -1 });
         if (!validOtp) return res.status(400).json({
             success:false,
              message: "Invalid or expired OTP" });

@@ -5,7 +5,7 @@ function UserCard() {
   const { user } = useAuthStore();
 
   return (
-    <div className="w-fit mt-6 mx-auto flex items-center justify-center bg-white shadow-md rounded-xl py-5 px-10 mb-6 transition hover:shadow-lg">
+    <div className="w-fit mt-20 mx-auto flex items-center justify-center bg-white shadow-md rounded-xl py-5 px-10 mb-6 transition hover:shadow-lg">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         {/* User Info */}
         <div>

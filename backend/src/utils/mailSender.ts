@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+import sgMail from '@sendgrid/mail'
 import otpTemplate from "../mail/templates/emailVerification";
 
 interface SendEmailOptions {
@@ -7,29 +7,23 @@ interface SendEmailOptions {
   html: any;
 }
 
+sgMail.setApiKey(process.env.SENDGRID_API_KEY!);
+
 export const mailSender = async ({ to, subject, html }: SendEmailOptions) => {
   try {
-    const transporter = nodemailer.createTransport({
-      port: 587,
-      host: process.env.MAIL_HOST!,
-      secure: false,
-      service: 'gmail',
-      auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS,
-      },
-      tls: {rejectUnauthorized: false}
-    });
 
+    console.log("PRINTING MAIL OPTIONS BEFORE SENDING");
+    console.log(to);   
     const mailOptions = {
-      from: 'HD | Note Taking App',
+      from: "ajeetk8568@gmail.com", 
       to,
       subject,
       html,
     };
 
-    const info = await transporter.sendMail(mailOptions);
-    console.log("Email sent: " + info.response);
+
+    const info = await sgMail.send(mailOptions);
+    console.log("Email sent: " + info);
     return true;
   } catch (error) {
     console.error("Error sending email:", error);
@@ -37,19 +31,15 @@ export const mailSender = async ({ to, subject, html }: SendEmailOptions) => {
   }
 };
 
-
-// Define a function to send emails
-export const sendVerificationEmail = async (email:string, otp:string) => {
-    try {
-        const mailResponse = await mailSender(
-            {
-                to: email,
-                subject: "Verification Email",
-                html: otpTemplate(otp)
-            }
-        );
-        return mailResponse;
-    } catch (error) {
-        console.log("Error occurred while sending email: ", error);
-    }
-}
+export const sendVerificationEmail = async (email: string, otp: string) => {
+  try {
+    const mailResponse = await mailSender({
+      to: email,
+      subject: "Verification Email",
+      html: otpTemplate(otp),
+    });
+    return mailResponse;
+  } catch (error) {
+    console.log("Error occurred while sending email: ", error);
+  }
+};

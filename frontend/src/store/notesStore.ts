@@ -30,6 +30,7 @@ export const useNotesStore = create<NotesStore>((set) => ({
     notesLoading:false,
     getAllNotesLoading:false,
     getAllNotes: async () => {
+        console.log("Token is", token);
         set({getAllNotesLoading:true});
         try {
             const res = await axios.get(`${API_URL}/notes`,{

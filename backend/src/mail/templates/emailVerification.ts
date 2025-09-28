@@ -1,3 +1,4 @@
+
 const otpTemplate = (otp:string) => {
 	return `<!DOCTYPE html>
 	<html>
@@ -26,6 +27,14 @@ const otpTemplate = (otp:string) => {
 			.logo {
 				max-width: 200px;
 				margin-bottom: 20px;
+			}
+
+			.logoName{
+			   font-size:24px;
+			   font-weight:bold;
+			   color:#333333;
+			   vertical-align:middle;
+			   margin-left:10px;
 			}
 	
 			.message {
@@ -60,14 +69,14 @@ const otpTemplate = (otp:string) => {
 			.highlight {
 				font-weight: bold;
 			}
+			
 		</style>
 	
 	</head>
 	
 	<body>
 		<div class="container">
-			<a href="https://studynotion-edtech-project.vercel.app"><img class="logo"
-					src="https://i.ibb.co/7Xyj3PC/logo.png" alt="HD Logo"></a>
+			<div>  <span class="logoName">HD</span> </div>
 			<div class="message">OTP Verification Email</div>
 			<div class="body">
 				<p>Dear User,</p>
