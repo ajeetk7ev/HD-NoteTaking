@@ -32,7 +32,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         set({ authIsLoading: true });
         try {
             const res = await axios.post(`${API_URL}/auth/send-otp`, { email });
-
+            
             if (res.data.success) {
                 return { success: true, message: res.data.message || "OTP sent successfully" };
             }
