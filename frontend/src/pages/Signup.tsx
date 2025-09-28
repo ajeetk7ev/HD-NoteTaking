@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Loader2, Eye, EyeOff } from "lucide-react";
 import logo from "../assets/logo (1).png"
 import authImage from '../assets/right-column.png';
+import EmailNote from "@/components/auth/EmailNote";
 
 const Signup: React.FC = () => {
     const [name, setName] = useState("");
@@ -86,6 +87,10 @@ const Signup: React.FC = () => {
                     <p className="text-gray-500 mb-4 text-center">
                         Sign up to enjoy the feature of HD
                     </p>
+
+                    {
+                        isOtpSent && <EmailNote />
+                     }
 
                     {/* Form */}
                     <form

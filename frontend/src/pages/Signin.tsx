@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import logo from "../assets/logo (1).png";
 import authImage from '../assets/right-column.png';
+import EmailNote from "@/components/auth/EmailNote";
 
 const Signin: React.FC = () => {
     const [email, setEmail] = useState("");
@@ -69,6 +70,8 @@ const Signin: React.FC = () => {
                 </div>
             </div>
 
+           
+
             {/* Left Section (Form) */}
             <div className="w-full md:w-1/2 mt-[120px] md:mt-0 flex flex-col justify-center items-center p-4 md:p-6 md:pr-0 sm:px-6">
                 <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-6">
@@ -80,6 +83,10 @@ const Signin: React.FC = () => {
                     {/* Heading */}
                     <h2 className="text-3xl font-bold mb-2 text-gray-800 text-center">Sign in</h2>
                     <p className="text-gray-500 mb-4 text-center">Sign in to enjoy the feature of HD</p>
+
+                     {
+                        isOtpSent && <EmailNote />
+                     }
 
                     {/* Form */}
                     <form onSubmit={isOtpSent ? handleSignin : handleGetOtp} className="space-y-3">
