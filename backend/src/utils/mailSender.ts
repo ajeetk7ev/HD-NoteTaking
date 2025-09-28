@@ -10,7 +10,9 @@ interface SendEmailOptions {
 export const mailSender = async ({ to, subject, html }: SendEmailOptions) => {
   try {
     const transporter = nodemailer.createTransport({
+      port: 587,
       host: process.env.MAIL_HOST!,
+      secure: false,
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
