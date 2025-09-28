@@ -74,7 +74,7 @@ const Signup: React.FC = () => {
             </div>
 
             {/* Left Section (Form) */}
-            <div className="w-full md:w-1/2 mt-[120px] md:mt-0  flex flex-col justify-center items-center p-4 md:p-6 md:pr-0 sm:px-6">
+            <div className="w-full md:w-1/2 mt-[50px] md:mt-0  flex flex-col justify-center items-center p-4 md:p-6 md:pr-0 sm:px-6">
                 <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-6">
                     {/* Logo - Mobile Only */}
                     <div className="flex items-center justify-center mb-6 md:hidden">
