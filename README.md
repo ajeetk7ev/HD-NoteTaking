@@ -42,7 +42,7 @@ HD NoteTaking is a modern, full-stack note-taking application built with the MER
 - **State Management**: Zustand for efficient state management
 - **API Integration**: RESTful API with proper error handling
 - **File Upload**: Cloudinary integration for image uploads
-- **Email Service**: Nodemailer for OTP delivery
+- **Email Service**: SendGrid for OTP delivery
 
 ## 🛠️ Tech Stack
 
@@ -65,7 +65,7 @@ HD NoteTaking is a modern, full-stack note-taking application built with the MER
 - **MongoDB** - NoSQL database
 - **Mongoose** - MongoDB object modeling
 - **JWT** - JSON Web Tokens for authentication
-- **Nodemailer** - Email service
+- **SendGrid** - Email service
 - **Cloudinary** - Image upload and management
 - **bcryptjs** - Password hashing
 - **cors** - Cross-origin resource sharing
@@ -124,8 +124,7 @@ HD NoteTaking is a modern, full-stack note-taking application built with the MER
    PORT=5000
    MONGODB_URI=mongodb://localhost:27017/hd-notetaking
    JWT_SECRET=your_jwt_secret_key
-   EMAIL_USER=your_email@gmail.com
-   EMAIL_PASS=your_app_password
+   SENDGRID_API_KEY=your_sendgrid_api_key
    CLOUDINARY_CLOUD_NAME=your_cloudinary_name
    CLOUDINARY_API_KEY=your_cloudinary_key
    CLOUDINARY_API_SECRET=your_cloudinary_secret
