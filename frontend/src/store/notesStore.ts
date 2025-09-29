@@ -31,7 +31,6 @@ export const useNotesStore = create<NotesStore>((set) => ({
     getAllNotesLoading:false,
     getAllNotes: async () => {
         const token = getFromLocalStorage("token");
-        console.log("Token is", token);
         set({getAllNotesLoading:true});
         try {
             const res = await axios.get(`${API_URL}/notes`,{
