@@ -10,10 +10,7 @@ import EmailNote from "@/components/auth/EmailNote";
 
 const Signin: React.FC = () => {
     const [email, setEmail] = useState("");
-    const [otp, setOtp] = useState("");
-    const [isOtpSent, setIsOtpSent] = useState(false);
-    const [showOtp, setShowOtp] = useState(false);
-    const [resendCooldown, setResendCooldown] = useState(0);
+    
     const { sendOtp, login, authIsLoading } = useAuthStore();
     const navigate = useNavigate();
 
